@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- marlin-css -->
+    <link href="https://cdn.jsdelivr.net/npm/marlin-css@0.7.2/marlin.css" rel="stylesheet" type="text/css">
+    <!-- General Sans -->
+    <link href="https://api.fontshare.com/css?f[]=general-sans@1&display=swap" rel="stylesheet">
+    <!--  -->
+    <title>Natalie CV</title>
+    <!--  -->
+    <style>
+        /* MARLIN OVERRIDES */
+        :root {
+            --primary: #1b1b1b;
+            --text: #1b1b1b;
+            --secondary: #969696;
+            --font-display: 'General Sans', monospace;
+            --font-body: 'General Sans', monospace;
+            --factor-type-h1: 0.42;
+            --factor-type-h3: 0.26;
+            /* --gradient-text: linear-gradient(#572A84, #C5B101); */
+            --master-h2-size: var(--master-body-1-size);
+            --master-h2-line-height: var(--master-body-2-line-height);
+        }
+
+        /* UNIQUE VARIABLES */
+        :root {
+            --gap: calc(var(--sc-1) * 0.5);
+            --line: 0.5px solid var(--primary);
+        }
+
+        /* STYLE INIT */
+        h1 {
+            font-weight: 640;
+            /* color: var(--gradient-text); */
+        }
+
+        h2 {
+            font-weight: 640;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-weight: 560;
+        }
+
+        /*  */
+        body {
+            padding: var(--sc-5) var(--sc-6);
+        }
+
+        /* PAGE CONSTRAINTS */
+        #page {
+            /* Enforce A4 aspect ratio */
+            aspect-ratio: 1 / 1.41421;
+            /* Convenient max-width */
+            /* max-width: 1080px; */
+            /* Pad the web preview (replaced with @page margin in print) */
+            padding: var(--sc-4);
+        }
+
+        /* PRINT */
+        @page {
+            size: A4;
+            margin: 8mm;
+        }
+
+        /* SPACING TOKENS */
+        :root {
+            --sp-0: 0.4vw;
+            --sc-1: 1.2vw;
+            --sp-2: 2vw;
+            --sp-3: 3.2vw;
+            --sp-4: 4vw;
+            --sp-5: 8vw;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            /* RELATIVE FONT SIZES */
+            h1 {
+                font-size: var(--sp-4) !important;
+                line-height: var(--sp-5) !important;
+            }
+
+            h2 {
+                font-size: var(--sc-1) !important;
+                font-weight: 600 !important;
+                line-height: var(--sp-2) !important;
+            }
+
+            h3 {
+                font-size: calc(var(--sc-1)* 0.72) !important;
+                font-weight: 560 !important;
+                line-height: var(--sc-1) !important;
+                color: #A1A1A1;
+            }
+
+            h4 {
+                font-size: var(--sp-2);
+                font-weight: 640;
+            }
+
+            p {
+                font-size: var(--sc-1) !important;
+                font-weight: 400 !important;
+                line-height: calc(var(--sp-2) * 1.08) !important;
+            }
+
+            button {
+                display: none;
+            }
+
+            /* STRIP WEB ELEMENTS */
+            nav {
+                display: none;
+            }
+        }
+
+        main {
+            padding: var(--sc-4);
+        }
+
+        /* HEADER */
+        header {
+            margin-bottom: var(--sc-3);
+        }
+
+        /* RAIL | CONTACT */
+
+        #railContact{
+            /* grid-column: span var(--cols-C); */
+            display: flex;
+            justify-content: flex-start;
+            /* flex-flow: row-wrap; */
+        }
+
+        #railContact>* {
+            margin-bottom: var(--sc-1);
+        }
+
+
+        #railContact .email .social{
+            font-weight: 600;
+        
+        }
+
+        #railContact .social {
+            /* grid-column: span var(--cols-F); */
+            display: flex;
+            /* justify-content: flex-end; */
+            justify-content: flex-start;
+            flex-direction: row;
+        }
+
+        .link{
+            /* color: violet; */
+            color: #8b04fa;ee;
+            text-decoration: underline;
+        }
+        
+
+        /* SECTION */
+        section {
+            display: grid;
+            grid-template-columns: repeat(var(--cols-L), 1fr);
+            padding-top: var(--sc-1);
+            padding-bottom: var(--sc-1);
+        }
+
+        section>* {
+            padding-top: var(--sc-1);
+        }
+
+        /* OVERLINES */
+        .label,
+        .body,
+        .fragment,
+        .segment {
+            border-top: var(--line);
+        }
+
+        /* GAPS */
+        .label,
+        .fragment {
+            margin-right: var(--gap);
+        }
+
+        /* LABEL */
+        .label {
+            grid-column: span var(--cols-C);
+        }
+
+        /* BODY */
+        .body {
+            grid-column: span var(--cols-I);
+            display: grid;
+            grid-template-columns: repeat(var(--cols-I), 1fr);
+        }
+
+        .body p {
+            grid-column: span var(--cols-I);
+        }
+
+        #sectionSkills .body,
+        #sectionCareer .body {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        /* FRAGMENT */
+        .fragment {
+            grid-column: span var(--cols-C);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
+        }
+
+        .fragment:nth-child(-n+3) {
+            padding-bottom: var(--sc-1);
+        }
+
+        .fragment h2 {
+            padding-bottom: var(--sc-1);
+        }
+
+        /* CAREER */
+        .segment {
+            grid-column: span var(--cols-I);
+            padding-top: var(--sc-1);
+            padding-right: var(--sc-1);
+            padding-bottom: var(--sc-1);
+        }
+
+        .segment>* {
+            padding-bottom: var(--sp-0);
+        }
+
+        /* RESPONSIVE */
+
+        @media screen and (max-width: 864px) {
+
+            /* STRIP BORDERS ON MOBILE (to reduce double ups) */
+            .body,
+            .fragment,
+            .segment {
+                border-top: none;
+            }
+
+            section {
+                margin-top: var(--sc-6);
+            }
+
+            .label h2 {
+                display: none;
+            }
+
+            #railContact .social {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+
+        /*  */
+    </style>
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- TITLE -->
+        <header>
+            <h1>Natalie Collins</h1>
+        </header>
+        <!-- RAIL | CONTACT -->
+        <div id="railContact" >
+            <h2 class="email">+61 418 810 540    |<a class="link" href="mailto: n.r.collins@outlook.com">   n.r.collins@outlook.com  </a> |   Adelaide SA, 5035</h2>
+        </div>
+        <div>
+        <h2 class="social"
+            link rel="socials"><a class="link" href="https://www.linkedin.com/in/natalie-collins/">linkedin.com/in/natalie-collins  |</a> <!--  <a href="portfolio@portfolio.com">  Portfolio@portfolio.com</a>  --> </h2>
+            
+        </div>
+
+        <!-- SECTION | SUMMARY -->
+        <section id="sectionSummary">
+            <div class="label">
+                <h2>Summary</h2>
+            </div>
+
+            <div class="body">
+                <p>A personable administrative and service professional with a background in digital design, travel/ tourism and hospitality in both retail and 
+                    corporate sectors, adaptable and driven to succeed with integrity.
+                    Educated in UX/UI Design and Web Development and a Diploma in Business Management, a passionate problem solver taking a holistic approach to 
+                    discovering solutions and a strong belief in mutually beneficial outcomes.</p>
+                <br>
+                <p>Awarded team leader in the dynamic travel industry and resourceful creator with a fine eye for detail whilst achieving big picture goals. 
+                    Extensive experience in learning, designing, supporting and mastering bespoke systems in agile environments with a unique ability to forge strong 
+                    relationships with key stakeholders, making me an invaluable collaborator, team member and leader.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION | TECHNICAL -->
+        <section id="sectionSkills">
+            <div class="label">
+                <h2>Technical Skills</h2>
+            </div>
+
+            <div class="body">
+                <!-- FRAGMENTS -->
+                <div class="fragment">
+                    <h2>Event logistics</h2>
+                    <p>Event system design, creation, ticketing and reporting within travel sector, event performance within entertainment sector and event planning and running within hospitality sector</p>
+                </div>
+                <div class="fragment">
+                    <h2>Administrative Management</h2>
+                    <p>Proficient across digital communication, weekly/ daily planner, meeting minutes with strong utilisation of Microsoft and Google Suites</p>
+                </div>
+                <div class="fragment">
+                    <h2>Project Mangement</h2>
+                    <p>Agile management of stakeholder and team interests, results focused with proficiency in collaboration, time keeping and CRM tools</p>
+                </div>
+                <div class="fragment">
+                    <h2>Administrative Finance</h2>
+                    <p>Accounts reconciliation, invoicing, debt collection, monthly/ annual budgets, purchases and claims with active use of bespoke industry accounting systems</p>
+                </div>
+                <div class="fragment">
+                    <h2>Design Principles and Tech</h2>
+                    <p>Proficient across fundamentals of design and latest tech design tools, producing all UX deliverables such as personas, info architecture, wireframes and low-fi/ hi-fi prototypes</p>
+                </div>
+                <div class="fragment">
+                    <h2>Website Design and Maintenance</h2>
+                    <p>Full stack design capabilities with solid understanding of HTML5, CSS, JavaScript, Bootstrap, jQuery and confident use of modern web design sites</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION | PERSONAL -->
+        <section id="sectionSkills">
+            <div class="label">
+                <h2>Personal Attributes</h2>
+            </div>
+
+            <div class="body">
+                <!-- FRAGMENTS -->
+                <div class="fragment">
+                    <h2>Communication</h2>
+                    <p>A respectful, clear and thorough communicator both verbally and digitally, confident presentor with a warm professional manner and personable conversationist</p>
+                </div>
+                <div class="fragment">
+                    <h2>Customer Service</h2>
+                    <p>Consistenly providing a delightful experience from end to end, practicing empathy and active listening, ensuring a positive lasting impression of a brand</p>
+                </div>
+                <div class="fragment">
+                    <h2>Organisation</h2>
+                    <p>Efficient prioritising multi-tasker in agile environments, actively resourceful using initiative to deliver on promises within time and budget limitations</p>
+                </div>
+                <div class="fragment">
+                    <h2>Adaptability</h2>
+                    <p>Flexible mindset and fast learner of new systems, a positive disposition and non-reactive to various personalities, calm under pressure and exceptional crisis management</p>
+                </div>
+                <div class="fragment">
+                    <h2>Creativity</h2>
+                    <p>Passionate problem solver taking a holistic approach to solutions, having strong attention to detail whilst maintaining a visualisation of big picture goals</p>
+                </div>
+                <div class="fragment">
+                    <h2>Collaboration</h2>
+                    <p>Strong team player and honest opperator taking responsibility for self, celebrating team wins and contributing to a positive and fun environment to work in</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION | CAREER -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>Career</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>Concierge Manager</h2> <h3> 2021-2022</h3>
+                    <h3>Moseley Beach Club/ Glenelg, SA</h3> 
+                    <p> Management of bookings and exceeding guest expectation </p>
+                    <p>→ Represent the rdjones brand by providing exceptional customer service to VIPs and all guests on arrival also via booking system, phone and email.
+                        Build trusting relationships based on mutual respect with floor staff, maintain booking turnover and manage walk ins, resolve complaints and RSA situations 
+                        ensuring the safety of all guests
+                    </p>
+                    <p>→ All reviews on personal service were a 4 star minimum and mentored younger staff arranging further employement after contract completion.
+                    </p>
+                </div>
+
+                <div class="segment">
+                    <h2>Corporate Travel Manager</h2> <h3> 2016-2020</h3>
+                    <h3>FCM Travel Solutions/ Adelaide, SA</h3> 
+                    <p> Expertise in travel solutions for large enterprise clients</p>
+                    <p>→ Provide exceptional customer service to international and domestic travellers in an agile and fast paced environment, 
+                        orchestrating travel schedules, ticketing, travel and financial documentation all within bespoke travel policy and manage memberships/ subscriptions for corporations
+                        and VIPs. Provide technical support for multiple online travel systems including Serko and Concur and CRM maintenance. Maintain and nuture strong relationships with suppliers
+                        and vigilance of policy changes and world events.
+                    </p>
+                    <p>→ 92% client retention rate whilst meeting all KPIs and contributor to team global award 2017 for TTV and profit aswell as onboarding
+                        support and online system training for 3 new clients.
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Corporate Events and Group Travel Coordinator - Team Manager</h2> <h3> 2014-2016</h3>
+                    <h3>Corporate Groups - CI Events, FCM, Corporate Traveller and Travel Club / Adelaide, SA/WA</h3> 
+                    <p>Management of 2 travel teams encompassing 4 brands</p>
+                    <p>→ Choreographing events and travel experiences for large corporate groups from various origins and designing bespoke 
+                        online travel booking and event ticketing interfaces such as Cvent and Serko with respect to brand alliance and associated ROI reporting to key stakeholders.
+                    </p>
+                    <p>→ Increase in revenue by 32% within first 3 months of management role providing new capability in the online group 
+                        booking sector, directly contributing to client retention in respective corporate travel brand.
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Corporate Travel Manager - Assistant Team Leader</h2> <h3> 2010-2014</h3>
+                    <h3>Corporate Traveller/ Adelaide, SA</h3> 
+                    <p>Expertise in travel solutions for SME clients</p>
+                    <p>→ Orchestrate and manage bespoke travel policies for SME clients and their travellers. Create and manage travel memberships and accounts, stakeholder meeting with ROI
+                        and travel policy reporting and implementation. Create and manage travel schedules and perform all financial administration. Support the team leader with all business
+                        administration including budgets and business plans and support the team in achieving all team and individual KPIs. Maintain strong relationships with suppliers and remain 
+                        vigilant of agile travel policies and major events.
+                    </p>
+                    <p>→ Contributed to team global award 2011 for TTV and profit and individual achievement in 2012. 86% client retention rate and winning 12 new accounts with onboarding support 
+                        and online system training.
+                    </p>
+                </div>
+                <div class="segment">
+                    <h2>Special Events and Functions Coordinator</h2> <h3> 2000-2014</h3>
+                    <h3>Epicure (formerly Spotless) / Australia, SA</h3> 
+                    <p>Set up and running of events, food and beverage service</p>
+                    <p>→ Logistical planning, front of house set up and marshalling of large corporate and private functions in various venues such as Adelaide Town Hall, 
+                        Wayville Showgrounds, Observatory and private residences. Special event facility and corporate box management such as Clipsal 500, Formula 1 Grand Prix
+                        and Royal Adelaide Show.</p>
+                    <p>→ Five consecutive years managing major sponsor corporate facility (Clipsal/ Gerard Industries) at Clipsal 500 and entrusted with direct service of politicians, 
+                        celebrities and VIPs due to impeccable service and integrity, directly contributing to client retention and brand representation.
+                    </p>
+                </div>
+
+            </section>
+                <!-- SECTION | PROJECTS -->
+
+
+
+        <!-- SECTION | EDUCATION -->
+        <section id="sectionCareer">
+            <div class="label">
+                <h2>Education</h2>
+            </div>
+
+            <div class="body">
+                <!-- SEGMENTS -->
+                <div class="segment">
+                    <h2>Certificate UX/UI Design and Development Bootcamp </h2>
+                    <h3>University of Adelaide / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>Diploma of Business Management</h2>
+                    <h3>Flight Centre Travel Group  / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>Diploma of Travel and Tourism</h2>
+                    <h3>Flight Centre Travel Group  / Adelaide, SA</h3>
+                </div>
+                <div class="segment">
+                    <h2>Certificate IV in Hospitality</h2>
+                    <h3>Spotless  / Adelaide, SA</h3>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
+
+
